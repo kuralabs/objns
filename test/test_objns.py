@@ -32,36 +32,37 @@ def test_objns():
         one=200,
     )
 
-    assert(ns.two == 400)
-    assert(ns.one == 200)
-    assert(ns['two'] == 400)
+    assert ns.two == 400
+    assert ns.one == 200
+    assert ns['two'] == 400
 
     ns['two'] = 300
-    assert(ns['two'] == 300)
+    assert ns['two'] == 300
 
     ns.two = 700
-    assert(ns['two'] == 700)
-    assert(ns.two == 700)
+    assert ns['two'] == 700
+    assert ns.two == 700
 
-    assert(ns.three.four == 400)
-    assert(ns['three'].four == 400)
-    assert(ns['three']['four'] == 400)
+    assert ns.three.four == 400
+    assert ns['three'].four == 400
+    assert ns['three']['four'] == 400
 
     nscopy = ns.copy()
-    assert(id(ns) != id(nscopy))
+    assert id(ns) != id(nscopy)
 
     asdict = dict(ns)
-    assert(asdict == {'one': 200, 'two': 700, 'three': {'four': 400}})
-    assert(type(asdict) == dict)
+    assert asdict == {'one': 200, 'two': 700, 'three': {'four': 400}}
+    assert isinstance(asdict, dict)
 
     ns.update({
         'one': 'override1',
         'three': {'four': 'override2'},
     })
-    assert(ns.one == 'override1')
-    assert(ns.three.four == 'override2')
 
-    assert(
+    assert ns.one == 'override1'
+    assert ns.three.four == 'override2'
+
+    assert (
         str(ns) ==
         "{'one': 'override1', 'three': {'four': 'override2'}, 'two': 700}"
     )
@@ -70,21 +71,25 @@ def test_objns():
         'one': 'override3',
         'three': {'four': 'override4'},
     }))
-    assert(ns.one == 'override3')
-    assert(ns.three.four == 'override4')
+    assert ns.one == 'override3'
+    assert ns.three.four == 'override4'
 
     ns.three = {'four': 'override5'}
-    assert(ns.three.four == 'override5')
+    assert ns.three.four == 'override5'
 
     nso = Namespace(OrderedDict([('one', 100), ('two', 200)]))
-    assert(
+    assert (
         str(nso) ==
         "OrderedDict([('one', 100), ('two', 200)])"
     )
 
     oit = iter(nso)
     key, value = next(oit)
-    assert(key == 'one' and value == 100)
+    assert key == 'one' and value == 100
 
     key, value = next(oit)
-    assert(key == 'two' and value == 200)
+    assert key == 'two' and value == 200
+
+    # Test __contains__
+    assert 'one' in nso
+    assert 'three' not in nso
