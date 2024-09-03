@@ -113,6 +113,10 @@ class Namespace:
         data = super().__getattribute__('_data')
         data[key] = value
 
+    def __contains__(self, key):
+        data = super().__getattribute__('_data')
+        return key in data
+
     def __repr__(self):
         data = super().__getattribute__('_data')
         return pformat(type(data)(self))
