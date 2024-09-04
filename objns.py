@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2017-2021 KuraLabs S.R.L
+# Copyright (C) 2017-2024 KuraLabs S.R.L
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ Transform a Python dictionary into an object.
 
 __author__ = 'KuraLabs S.R.L'
 __email__ = 'info@kuralabs.io'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 
 from copy import deepcopy
